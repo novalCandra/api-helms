@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Helment extends Model
 {
-    //
+    protected $guarded = [];
 }
