@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('helm__returns', function (Blueprint $table) {
+        Schema::create('HelmReturn', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('borrowed_id')->constrained()->onDelete('cascade');
             $table->date('due_date');
             $table->timestamps();
         });

@@ -7,4 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Helment extends Model
 {
     protected $guarded = [];
+
+    public function borroweds()
+    {
+        return parent::hasMany(Borrowed::class);
+    }
 }

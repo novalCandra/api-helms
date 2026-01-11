@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('helment_id')->constrained()->onDelete('cascade');
-            $table->foreignId('helm__return_id')->constrained()->onDelete('cascade');
             $table->enum('status', ['available', 'Borrowed', 'Returned', 'Late']);
             $table->date('borrow_date');
             $table->date('return_date');
