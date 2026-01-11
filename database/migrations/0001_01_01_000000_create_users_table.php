@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('phone_number', 20);
             $table->string('password');
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
-            $table->softDeletes('blacklist');
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

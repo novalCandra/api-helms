@@ -12,7 +12,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            "email" => "required|string|email|min:1|max:255",
+            "email" => "required|string|min:1|max:255",
             "password" => "required|string|min:1|max:255"
         ]);
 
@@ -37,17 +37,20 @@ class AuthController extends Controller
         $request->validate([
             "full_name" => "required|string|min:1|max:255",
             "email" => "required|string|email|min:1|max:255",
-            "phone_number" => "required|regex:/^(\+62|0)[0-9]{9,13}$/",
+            "phone_number" => [
+                "required",
+                "string",
+                "regex:#^(\+62|0)[0-9]{9,13}$#"
+            ],
             "password" => "required|string|min:1|max:255",
             "confirm_password" => "required|string|min:1|max:255"
         ]);
 
         $CreateAccounr = User::create([
             "full_name" =>  $request->full_name,
-            "email" => $request->emai,
+            "email" => $request->email,
             "phone_number" => $request->phone_number,
             "password" => bcrypt($request->password),
-            "confirm_password" => bcrypt($request->confirm_password)
         ]);
 
         try {
