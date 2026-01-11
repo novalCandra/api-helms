@@ -19,14 +19,7 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
-    protected $fillable = [
-        'full_name',
-        'email',
-        'role',
-        'phone_number',
-        'confirm_password',
-        'password',
-    ];
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -49,5 +42,11 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+
+    public function borroweds()
+    {
+        return parent::hasMany(Borrowed::class);
     }
 }

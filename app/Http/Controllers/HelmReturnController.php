@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Helm_Return;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class HelmReturnController extends Controller
@@ -28,7 +29,19 @@ class HelmReturnController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "borrowed_id" => "required|exists:borroweds,id",
+            "due_date" => "required|date|string",
+        ]);
+        $duaDate = Carbon::create($request->due_date);
+        $CreateReturn = Helm_Return::create([
+            "borrowed_id" => $request->borrowed_id,
+            "due_date" => $duaDate->toDateString()
+        ]);
+        return response()->json([
+            "message" => "sucess mengembalikan",
+            "data" => $CreateReturn
+        ]);
     }
 
     /**
